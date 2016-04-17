@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'awesome_print', '~> 1.6'
   gem.add_development_dependency 'bundler', '~> 1.11.2'
   gem.add_development_dependency 'bundler-audit', '~> 0.5.0'
+  gem.add_development_dependency 'minitest', '~> 5.8'
   gem.add_development_dependency 'overcommit', '~> 0.32.0'
   gem.add_development_dependency 'pry-byebug', '~> 3.3'
   gem.add_development_dependency 'rake', '~> 11.1.2'
@@ -30,6 +31,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec', '~> 3.4.0'
   gem.add_development_dependency 'rubocop', '~> 0.39.0'
   gem.add_development_dependency 'rubygems-tasks', '~> 0.2'
+  gem.add_development_dependency 'wrong', '~> 0.7'
 
   gem.add_dependency 'nsq-ruby', '~> 1.5.0', '>= 1.5.0'
 end
