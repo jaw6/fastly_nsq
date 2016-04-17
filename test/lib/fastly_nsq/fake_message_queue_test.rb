@@ -33,10 +33,10 @@ describe FakeMessageQueue do
   describe 'resetting the queue' do
     before do
       FakeMessageQueue.queue = ['hello']
-      assert { FakeMessageQueue.queue == ['hello'] }
     end
 
     it 'resets the fake message queue' do
+      assert { FakeMessageQueue.queue == ['hello'] }
       FakeMessageQueue.reset!
       assert { FakeMessageQueue.queue.empty? }
     end
@@ -58,7 +58,7 @@ describe FakeMessageQueue do
 
       it 'blocks for longer than the queue check cycle' do
         assert_raises(Timeout::Error) do
-          Timeout.timeout(0.2) { consumer.pop(0.1).tap { |x| puts "Popped: #{x.inspect}"} }
+          Timeout.timeout(0.2) { consumer.pop(0.1) }
         end
       end
     end
@@ -80,8 +80,6 @@ describe FakeMessageQueue do
         assert { consumer.pop == message }
       end
     end
-
-
   end
 
   describe 'Message' do
@@ -93,12 +91,9 @@ describe FakeMessageQueue do
         assert { content == FakeMessageQueue.queue.pop.body }
       end
     end
-
   end
 
   describe 'Producer' do
-    after { FakeMessageQueue.reset! }
-
     it 'adds a new message to the queue' do
       producer.write('hello')
       assert { FakeMessageQueue.queue.size == 1 }
