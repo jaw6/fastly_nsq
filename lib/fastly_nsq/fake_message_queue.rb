@@ -48,12 +48,12 @@ module FakeMessageQueue
     def initialize(nsqlookupd:, topic:, channel:)
     end
 
-    def pop
+    def pop(sleep_duration=SECONDS_BETWEEN_QUEUE_CHECKS)
       message = nil
 
       until message
         message = queue.pop
-        sleep SECONDS_BETWEEN_QUEUE_CHECKS
+        sleep sleep_duration
       end
 
       message

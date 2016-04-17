@@ -52,15 +52,13 @@ describe FakeMessageQueue do
     }
 
     describe 'when there no message on the queue' do
-      let(:delay) { FakeMessageQueue::Consumer::SECONDS_BETWEEN_QUEUE_CHECKS + 0.1 }
-
       it 'tells you how many messages are in the queue' do
         assert { consumer.size == 0 }
       end
 
       it 'blocks for longer than the queue check cycle' do
         assert_raises(Timeout::Error) do
-          Timeout.timeout(delay) { consumer.pop.tap { |x| puts "Popped: #{x.inspect}"} }
+          Timeout.timeout(0.2) { consumer.pop(0.1).tap { |x| puts "Popped: #{x.inspect}"} }
         end
       end
     end
